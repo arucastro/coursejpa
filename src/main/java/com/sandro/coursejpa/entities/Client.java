@@ -3,19 +3,27 @@ package com.sandro.coursejpa.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class User implements Serializable {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Client implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String name;
 	private String email;
 	private String phone;
 	private String password;
 
-	public User() {
+	public Client() {
 	}
 
-	public User(Integer id, String name, String email, String phone, String password) {
+	public Client(Long id, String name, String email, String phone, String password) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -24,11 +32,11 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -77,7 +85,7 @@ public class User implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Client other = (Client) obj;
 		return Objects.equals(id, other.id);
 	}
 	
