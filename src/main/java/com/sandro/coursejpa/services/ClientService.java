@@ -33,4 +33,17 @@ public class ClientService {
 	public void delete(Long id) {
 		repository.deleteById(id);
 	}
+	
+	public Client update(Long id, Client obj) {
+		Client entity = repository.getReferenceById(id);
+		updateData(entity, obj);
+		return repository.save(entity);
+	}
+
+
+	private void updateData(Client entity, Client obj) {
+		entity.setName(obj.getName());
+		entity.setEmail(obj.getEmail());
+		entity.setPhone(obj.getPhone());
+	}
 }
