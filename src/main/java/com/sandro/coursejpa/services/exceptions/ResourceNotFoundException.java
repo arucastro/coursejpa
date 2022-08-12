@@ -1,4 +1,4 @@
-package com.sandro.coursejpa.resources.exceptions;
+package com.sandro.coursejpa.services.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException{
 	private static final long serialVersionUID = 1L;
