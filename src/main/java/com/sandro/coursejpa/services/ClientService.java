@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.sandro.coursejpa.entities.Client;
 import com.sandro.coursejpa.repositories.ClientRepository;
+import com.sandro.coursejpa.resources.exceptions.ResourceNotFoundException;
 
 
 @Service
@@ -23,7 +24,7 @@ public class ClientService {
 	
 	public Client findById (Long id) {
 		Optional<Client> obj = repository.findById(id);
-		return obj.get();
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	public Client insert(Client obj) {
