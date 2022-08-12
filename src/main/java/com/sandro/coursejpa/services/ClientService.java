@@ -3,6 +3,8 @@ package com.sandro.coursejpa.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -45,9 +47,13 @@ public class ClientService {
 	}
 	
 	public Client update(Long id, Client obj) {
-		Client entity = repository.getReferenceById(id);
-		updateData(entity, obj);
-		return repository.save(entity);
+		try {
+			Client entity = repository.getReferenceById(id);
+			updateData(entity, obj);
+			return repository.save(entity);
+		}catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
 	}
 
 
